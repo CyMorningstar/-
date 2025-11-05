@@ -1,0 +1,137 @@
+body {
+    font-family: 'Time New Romans', serif;
+    background-color: #f8f8f8;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    color: #ff00aa; /* Цвет для заголовка */
+    margin-bottom: 15px;
+    font-size: 2.5em;
+}
+
+.names {
+    font-size: 1.8em;
+    color: #000000; /* Другой цвет для имен */
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.invite p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.invite strong {
+    color: #000000; /* Цвет для ключевых слов */
+}
+
+.invite {
+    margin-top: 40px;
+    border-top: 1px dashed #ccc;
+    padding-top: 30px;
+}
+
+.punishment p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.punishment strong {
+    color: #000000; /* Цвет для ключевых слов */
+}
+
+.punishment {
+    margin-top: 40px;
+    border-top: 1px dashed #ccc;
+    padding-top: 30px;
+}
+
+.happiness p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.happiness strong {
+    color: #000000; /* Цвет для ключевых слов */
+}
+
+.happiness {
+    margin-top: 40px;
+    border-top: 1px dashed #ccc;
+    padding-top: 30px;
+}
+
+.details p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.details strong {
+    color: #ff0000; /* Цвет для ключевых слов */
+}
+
+.details {
+    margin-top: 40px;
+    border-top: 1px dashed #ccc;
+    padding-top: 30px;
+}
+
+.rsvp-section {
+    margin-top: 40px;
+    border-top: 1px dashed #ccc;
+    padding-top: 30px;
+}
+
+.rsvp-section h2 {
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+#rsvpForm input[type="tel"] {
+    width: calc(100% - 22px); /* Учитываем padding */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+#rsvpForm button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#rsvpForm button:hover {
+    background-color: #218838;
+}
+
+.message {
+    margin-top: 15px;
+    font-style: italic;
+    color: #6c757d;
+}
