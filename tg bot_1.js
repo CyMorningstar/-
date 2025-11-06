@@ -9,7 +9,7 @@
     // Ниже представлен пример с использованием fetch API.
     // Вам нужно будет заменить URL на тот, что предоставляет ваш хостинг для бэкенда.
 
-    fetch('https://github.com/CyMorningstar/tg-bot.git', { // <<<---- ЗАМЕНИТЕ ЭТОТ URL!
+    fetch('https://github.com/CyMorningstar/-.git', { // <<<---- ЗАМЕНИТЕ ЭТОТ URL!
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -49,4 +49,5 @@
     // messageElement.textContent = "Спасибо! Мы получили ваш номер (в демо-режиме).";
     // messageElement.style.color = "green";
     // document.getElementById('phoneNumber').value = '';
+
 });
