@@ -9,7 +9,7 @@
     // Ниже представлен пример с использованием fetch API.
     // Вам нужно будет заменить URL на тот, что предоставляет ваш хостинг для бэкенда.
 
-    fetch('https://github.com/CyMorningstar/-.git', { // <<<---- ЗАМЕНИТЕ ЭТОТ URL!
+    fetch('https://web.telegram.org/k/#@RomaAndLiza_bot', { // <<<---- ЗАМЕНИТЕ ЭТОТ URL!
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -51,3 +51,4 @@
     // document.getElementById('phoneNumber').value = '';
 
 });
+
