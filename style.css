@@ -1,0 +1,647 @@
+/* Общие стили */
+:root {
+    --primary-font: 'Libre Caslon Display', serif; /* Более декоративный шрифт для заголовков */
+    --secondary-font: 'Cormorant Garamond', serif; /* Основной шрифт для текста */
+    --accent-color: #805434; /* Основной акцентный цвет из палитры */
+    --background-color: #f8f4f0; /* Светлый фон */
+    --text-color: #333;
+    --dark-text-color: #222;
+    --light-text-color: #eee;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--secondary-font);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Центрируем контент по вертикали, если он меньше экрана */
+    min-height: 100vh;
+    position: relative; /* Для позиционирования декоративных элементов */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--primary-font);
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block; /* Для псевдоэлемента */
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #5C3E1C;
+}
+
+.section {
+    padding: 60px 20px;
+    width: 100%;
+    max-width: 800px; /* Ограничиваем ширину контента */
+    margin: 0 auto; /* Центрируем секции */
+    text-align: center;
+    position: relative; /* Для позиционирования внутренних элементов, если нужно */
+    box-sizing: border-box;
+}
+
+.section-content {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для контента */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    margin: 20px 0; /* Отступы между секциями */
+}
+
+/* Декоративные изображения */
+.decorative-image {
+    position: fixed; /* Фиксируем положение */
+    width: 250px;
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0; /* Изначально скрыты */
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    z-index: 0; /* Позади основного контента */
+}
+
+.image-top-left {
+    top: 150px;
+    left: -40px;
+    transform: translate(-50px, -50px) rotate(-15deg);
+}
+
+.image-bottom-right {
+    bottom: 20px;
+    right: -50px;
+    transform: translate(50px, 50px) rotate(15deg);
+}
+
+.hidden-on-load.visible {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+}
+
+/* 1. Прелоадер */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Темный фон для прелоадера */
+    z-index: 1000; /* Поверх всего */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-text-color);
+    overflow: hidden;
+    transition: opacity 1s ease-in-out;
+}
+
+#preloader-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -2; /* Позади текста */
+    opacity: 0.5; /* Небольшая прозрачность */
+    object-fit: cover; /* Чтобы видео покрывало всю область */
+}
+
+.preloader-content-wrapper {
+    position: relative;
+    z-index: 2; /* Поверх видео */
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+}
+
+/* Стиль для телефонов (снизу) */
+@media (max-width: 768px) {
+    .preloader-content-wrapper {
+        position: absolute; /* Позиционируем абсолютно, чтобы быть внизу */
+        bottom: 20px; /* Отступ снизу */
+        top: auto; /* Убираем top */
+        justify-content: flex-end; /* Прижимаем контент к низу flex-контейнера */
+        max-width: 90%; /* Шире на мобильных */
+        margin: 0 auto; /* Центрируем */
+    }
+}
+
+/* Стиль для компьютеров (по центру) */
+.preloader-content-wrapper.center-on-desktop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрирование */
+    max-width: 500px; /* Ограничиваем ширину */
+}
+
+.preloader-text-container {
+    margin-bottom: 20px; /* Уменьшаем отступ для мобильных */
+}
+
+.preloader-text {
+    font-family: var(--primary-font);
+    font-size: 3.5em;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.unlock-label {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--light-text-color);
+    opacity: 0.7;
+    margin-bottom: 20px; /* Отступ перед ползунком */
+}
+
+/* Новый стиль ползунка */
+.slider-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* !!! ИЗМЕНЕННЫЙ ПУНКТИР !!! */
+.slider-track-container {
+    width: 100%;
+    max-width: 350px; /* Ширина трека */
+    height: 3px; /* !!! ТОЛЩИНА ПУНКТИРНЫХ ЛИНИЙ !!! (сделана тоньше) */
+    background: repeating-linear-gradient(
+        90deg, /* !!! ИЗМЕНЕНО: 90deg для вертикальных полос !!! */
+        transparent 0%,
+        transparent 50%,
+        var(--light-text-color) 50%,
+        var(--light-text-color) 60%
+    );
+    background-size: 20% 10px; /* !!! ИЗМЕНЕНО: 100% ширина, 15px высота сегмента (интервал между пунктирами) !!! */
+    position: relative;
+    border-radius: 1.5px; /* Слегка скругляем концы */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Для размещения конечного круга */
+    margin: 10px auto; /* Центрируем трек и уменьшаем отступ */
+}
+
+.slider-track-container .end-circle {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--light-text-color); /* Белый контур */
+    border-radius: 50%;
+    position: absolute;
+    right: 0; /* Позиционируем справа */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: grab; /* Указываем, что элемент можно тянуть */
+    user-select: none;
+    transition: transform 0.2s ease, left 0.1s linear; /* Добавим transition для left */
+}
+
+.slider-track-container .end-circle.grabbing {
+    transform: translateY(-50%) scale(1.1); /* Небольшое увеличение при захвате */
+}
+
+.slider {
+    width: 50px;
+    height: 50px;
+    background-color: var(--light-text-color); /* Белый круг */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000; /* Цвет стрелки */
+    font-size: 1.5em;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+    position: absolute;
+    left: 0; /* Позиция будет меняться через JS */
+    top: 50%;
+    transform: translate(-50%, -50%); /* Центрируем относительно его левой точки */
+    z-index: 10; /* Чтобы был поверх пунктира */
+    transition: left 0.1s linear; /* Плавное движение */
+}
+
+.slider.dragging {
+    transform: translate(-50%, -50%) scale(1.1); /* Увеличиваем при перетаскивании */
+}
+
+/* !!! НОВОЕ: Полоса прогресса !!! */
+.slider-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%; /* Изначально 0% */
+    background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый */
+    border-radius: 1.5px; /* Слегка скругляем концы */
+    z-index: 9; /* Позади основного ползунка, но поверх пунктира */
+    transition: width 0.1s linear;
+}
+
+
+/* Основной контент */
+.main-content {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative; /* Для видео фона */
+    opacity: 0; /* Изначально скрыт */
+    transition: opacity 1s ease-in-out; /* Плавное появление */
+}
+
+#main-content-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* За фоном */
+    opacity: 0.3; /* Полупрозрачность */
+    object-fit: cover; /* Чтобы видео покрывало всю область */
+}
+
+/* Аудио */
+#audio-controls {
+    /* position: relative; */
+    top: 20px;
+    right: 20px;
+    z-index: 10; /* Поверх всего */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--dark-text-color);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+#audio-controls:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#play-pause-button {
+    font-size: 1.8em;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+}
+
+#play-pause-button.playing {
+    transform: rotate(360deg);
+}
+
+#music-label {
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Секция: Приглашение */
+#invitation h2 {
+    font-size: 3em;
+    margin-bottom: 40px;
+}
+
+#invitation p {
+    font-size: 1.2em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Секция: Дата и Таймер */
+.date-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.date-section p {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+}
+
+.countdown {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-item span {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.countdown-item div {
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-text-color);
+}
+
+/* Секция: Программа вечера */
+#program h2 {
+    font-size: 2.2em;
+}
+
+.program-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.program-list li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px;
+
+}
+
+.program-list li::before {
+    color: var(--accent-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em; /* Подгоняем отступ */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.4em;
+}
+
+/* Секция: Место проведения */
+#location h2 {
+    font-size: 2.2em;
+}
+
+.venue-details p {
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+
+.social-link {
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.social-link i {
+    font-size: 1.5em;
+    color: var(--accent-color);
+}
+
+.social-link:hover i {
+    color: #5C3E1C;
+}
+
+/* Секция: Дресс-код */
+#dress-code h2 {
+    font-size: 2.2em;
+}
+
+.dress-code-details p {
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+
+.dress-code-colors {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.color-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--shadow-color);
+}
+
+/* Секция: Details */
+#Details h2 {
+    font-size: 2.2em;
+}
+
+.details p {
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+
+.details li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.7;
+    text-align: left; /* Чтобы списки были выровнены */
+    max-width: 400px; /* Для лучшего вида */
+    margin: 0 auto 10px auto; /* Центрируем */
+}
+
+/* Секция: Телеграм-канал */
+.section.sr-animated { /* Для ScrollReveal */
+    margin-top: 50px;
+}
+
+.section.sr-animated p {
+    font-size: 1.1em;
+    opacity: 0.8;
+    margin-top: 15px;
+}
+
+.section.sr-animated li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto 8px auto;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .decorative-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .preloader-text {
+        font-size: 2.5em;
+    }
+
+    .unlock-label {
+        font-size: 1em;
+    }
+
+    /* !!! Адаптивные размеры для ползунка !!! */
+    .slider-track-container {
+        max-width: 250px;
+        height: 2px; /* Тоньше на мобильных */
+        background-size: 100% 12px; /* Интервал тоньше */
+    }
+
+    .slider, .slider-track-container .end-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .date-section p {
+        font-size: 2em;
+    }
+
+    .countdown-item span {
+        font-size: 2.5em;
+    }
+
+    .program-list, .venue-details p, .dress-code-details p, .details p, .section.sr-animated p, .section.sr-animated li {
+        font-size: 1.05em;
+    }
+
+    #audio-controls {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+
+    #play-pause-button {
+        font-size: 1.5em;
+        margin-right: 10px;
+    }
+
+    #music-label {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* .decorative-image {
+        display: none; Скрываем на очень маленьких экранах
+    } */
+
+    .preloader-text {
+        font-size: 1.8em;
+    }
+
+    .unlock-label {
+        font-size: 0.9em;
+    }
+
+    /* !!! Еще тоньше на самых маленьких экранах !!! */
+    .slider-track-container {
+        max-width: 200px;
+        height: 1.5px;
+        background-size: 4% 1px;
+    }
+
+    .slider, .slider-track-container .end-circle {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .date-section p {
+        font-size: 1.8em;
+    }
+
+    .countdown-item span {
+        font-size: 2em;
+    }
+
+    .countdown-item div {
+        font-size: 0.8em;
+    }
+
+    .section-content {
+        padding: 15px;
+    }
+
+    .section {
+        padding: 40px 15px;
+    }
+}
